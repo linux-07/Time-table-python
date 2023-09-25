@@ -22,7 +22,7 @@ def create_or_load_timetable(date, directory):
 
     return timetable, filename
 
-# Function to display the timetable without mentioning completed tasks
+# Function to display the timetable
 def display_timetable(timetable):
     if not timetable:
         print("No tasks scheduled.")
@@ -30,8 +30,7 @@ def display_timetable(timetable):
         print("\nTimetable:")
         for i, task in enumerate(timetable, 1):
             task_info = task.strip().split(" ", 1)
-            if not task_info[0].startswith("(completed)"):
-                print(f"{i}. {task_info[1]}")
+            print(f"{i}. {task_info[0]} {task_info[1]}")
 
 # Function to add a task with a time slot to the timetable
 def add_task(timetable):
@@ -49,7 +48,7 @@ def mark_completed(timetable):
         return
     
     if 1 <= task_index <= len(timetable):
-        timetable[task_index - 1] = "(completed)" + timetable[task_index - 1][9:]
+        timetable[task_index - 1] = "(completed) " + timetable[task_index - 1][9:]
         print("Task marked as completed!")
     else:
         print("Invalid task number.")
