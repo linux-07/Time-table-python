@@ -1,10 +1,17 @@
 import os
 from datetime import datetime
 
+# Function to create the "Time tables" directory if it doesn't exist
+def create_timetables_directory():
+    directory = "Time tables"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    return directory
+
 # Function to create or load a timetable
-def create_or_load_timetable(date):
+def create_or_load_timetable(date, directory):
     formatted_date = date.strftime("%d-%m-%Y")
-    filename = f"{formatted_date}_timetable.txt"
+    filename = os.path.join(directory, f"{formatted_date}_timetable.txt")
     
     if os.path.exists(filename):
         print(f"Loading timetable for {formatted_date}...")
@@ -13,7 +20,7 @@ def create_or_load_timetable(date):
     else:
         timetable = []
 
-    return timetable
+    return timetable, filename
 
 # Function to display the timetable without mentioning completed tasks
 def display_timetable(timetable):
@@ -48,9 +55,7 @@ def mark_completed(timetable):
         print("Invalid task number.")
 
 # Function to save the timetable to a file and exit
-def save_timetable_and_exit(date, timetable):
-    formatted_date = date.strftime("%d-%m-%Y")
-    filename = f"{formatted_date}_timetable.txt"
+def save_timetable_and_exit(date, timetable, filename):
     with open(filename, 'w') as file:
         file.writelines(timetable)
     print(f"Timetable saved to {filename}")
@@ -59,9 +64,11 @@ def save_timetable_and_exit(date, timetable):
 
 # Main program
 if __name__ == "__main__":
+    create_timetables_directory()  # Create the "Time tables" directory if it doesn't exist
     date_str = input("Enter the date (DD-MM-YYYY): ")
     date = datetime.strptime(date_str, "%d-%m-%Y")
-    timetable = create_or_load_timetable(date)
+    directory = "Time tables"
+    timetable, filename = create_or_load_timetable(date, directory)
     
     while True:
         print("\nOptions:")
@@ -79,6 +86,6 @@ if __name__ == "__main__":
         elif choice == '3':
             mark_completed(timetable)
         elif choice == '4':
-            save_timetable_and_exit(date, timetable)
+            save_timetable_and_exit(date, timetable, filename)
         else:
             print("Invalid choice. Please try again.")
