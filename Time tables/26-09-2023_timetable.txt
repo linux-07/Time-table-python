@@ -3,7 +3,7 @@
 (completed) M - 3:00PM: SCHOOL HOURS
 (completed) M - 4:00PM: FRESH UP AND EAT
 (completed) M - 4:30PM: RELAX
-( ) 4:30PM - 7:00PM: STUDY
+(completed) M - 7:00PM: STUDY
 ( ) 7:00PM - 8:00PM: TABLA AND PUJA
 ( ) 8:00PM - 9:30PM: GANPATI (GOING DOWN)
 ( ) 9:30PM - 10:30PM: DINNER, RELAX AND SLEEP
